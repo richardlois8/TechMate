@@ -1,6 +1,5 @@
-package id.co.ukdw.techmate.ui
+package id.co.ukdw.techmate.ui.home
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,25 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import id.co.ukdw.techmate.MainActivity
 import id.co.ukdw.techmate.R
+import id.co.ukdw.techmate.databinding.FragmentHomeBinding
 
-@SuppressLint("CustomSplashScreen")
-class SplashScreenFragment : Fragment() {
+
+class HomeFragment : Fragment() {
+    private lateinit var binding : FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash_screen, container, false)
+        binding = FragmentHomeBinding .inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hideBottomNav()
+        showBottomNav()
     }
 
-    private fun hideBottomNav() {
-        val navBar = (activity as MainActivity?)?.binding?.bottomNav
-        navBar?.visibility = View.GONE
+    private fun showBottomNav() {
+        val bottomNav = (activity as MainActivity).binding.bottomNav
+        bottomNav.visibility = View.VISIBLE
     }
 }
