@@ -18,4 +18,20 @@
         android:id="@+id/homeFragment"
         android:name="id.co.ukdw.techmate.ui.home.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="id.co.ukdw.techmate.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_recommendationFragment"
+            app:destination="@id/recommendationFragment" />
+    </fragment>
+    <action android:id="@+id/action_global_searchFragment" app:destination="@id/searchFragment" />
+    <action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment" />
+    <fragment
+        android:id="@+id/recommendationFragment"
+        android:name="id.co.ukdw.techmate.ui.RecommendationFragment"
+        android:label="fragment_recommendation"
+        tools:layout="@layout/fragment_recommendation" />
 </navigation>
