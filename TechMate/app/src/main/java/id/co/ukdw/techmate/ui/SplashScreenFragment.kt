@@ -2,27 +2,36 @@ package id.co.ukdw.techmate.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import id.co.ukdw.techmate.MainActivity
 import id.co.ukdw.techmate.R
+import id.co.ukdw.techmate.databinding.FragmentSplashScreenBinding
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
+    private lateinit var binding : FragmentSplashScreenBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_splash_screen, container, false)
+        binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideBottomNav()
+        Looper.myLooper()?.let {
+            android.os.Handler(it).postDelayed({
+                findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment)
+            }, 3000)
+        }
     }
 
     private fun hideBottomNav() {
