@@ -6,14 +6,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.ItemGadgetBinding
+import java.util.*
 
 class GadgetAdapter(val lstGadget : List<GadgetCase>) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
     class GadgetViewHolder(val binding : ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : GadgetCase) {
-            binding.txtBrand.text = item.brand
+            val brand = item.brand
             val splitGoal = item.goal.split(" ")
-            val model = splitGoal.slice(1..splitGoal.size-1).joinToString(" ")
-            binding.txtModel.text = model
+            val model = if(brand.lowercase() == splitGoal[0].lowercase()) splitGoal.slice(1 until splitGoal.size).joinToString(" ") else item.goal
+            binding.txtBrand.text = brand.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+            binding.txtModel.text = model.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
 
             Glide.with(binding.root.context)
                 .load(item.image)
