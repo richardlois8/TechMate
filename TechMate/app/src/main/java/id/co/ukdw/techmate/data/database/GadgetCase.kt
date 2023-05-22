@@ -1,5 +1,6 @@
 package id.co.ukdw.techmate.data.database
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -14,8 +15,8 @@ data class GadgetCase(
     val features : String,
     val image : String,
     val goal : String,
-){
+) : java.io.Serializable {
     operator fun iterator(): Iterator<Pair<String, Any>> {
-        return listOf("brand" to brand, "memory" to memory, "ram" to ram, "harga" to price, "fitur" to features, "goal" to goal).iterator()
+        return listOf("brand" to brand, "memory" to memory, "ram" to ram, "price" to price, "features" to features).iterator()
     }
 }
