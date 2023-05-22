@@ -1,6 +1,8 @@
 package id.co.ukdw.techmate.engine
 
 import android.content.Context
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.data.database.GadgetDAO
 import id.co.ukdw.techmate.data.database.GadgetDatabase
@@ -8,16 +10,15 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.abs
 
-class CBREngine(ctx : Context) {
+class CBREngine(val ctx : Context) {
     private val mDao : GadgetDAO
     private lateinit var cases: List<GadgetCase>
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+    private val recommendationResult = mutableListOf<GadgetCase>()
 
     init {
         val db = GadgetDatabase.getDatabase(ctx)
         mDao = db.gadgetDao()
-        insertCases()
-        initCases()
     }
 
     fun insertCases(){
@@ -45,14 +46,13 @@ class CBREngine(ctx : Context) {
         GadgetCase(0,"vivo", 64, 4, 1900000, "good selfie camera, water resistant, longer battery life, fast fingerprint response", "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2022/12/26/c688c775-ce86-433d-b58a-703e9b61fe43.jpg","Vivo Y16"),
         GadgetCase(0,"vivo", 64, 4, 2400000, "90hz refresh rate, extended ram 4gb, 50mp camera, fast charging 18w", "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1661742593678/989c937e99b888767265f51a5d4a4c3b.png","Vivo Y22"),
         GadgetCase(0,"realme", 32, 3, 1400000, "big screen, thin bezels, side fingerprint", "https://images.tokopedia.net/img/cache/500-square/VqbcmM/2023/2/5/3085656a-95d5-4362-9b92-00c5d2448257.jpg","Realme C30s"),
-        GadgetCase(0,"realme", 128, 8, 3200000, "fast charging 33w, 5000mah battery, triple camera", "https://image01.realme.net/general/20221101/1667271058255.jpg","Realme 10"),
+        GadgetCase(0,"realme", 128, 8, 3200000, "fast charging 33w, 5000 mah battery, triple camera", "https://image01.realme.net/general/20221101/1667271058255.jpg","Realme 10"),
         GadgetCase(0,"realme", 32, 3, 1600000, "ufs internal memory, side fingerprint, good camera","https://image01.realme.net/general/20230217/1676603104101.png?width=1080&height=1080&size=380521", "Realme C33") )
-
         executorService.execute { mDao.insertGadget(data) }
     }
 
     fun initCases() {
-        cases = mDao.getAllGadget()
+        executorService.execute { cases = mDao.getAllGadget() }
     }
 
     fun getAllGadget() : List<GadgetCase> {
@@ -63,29 +63,30 @@ class CBREngine(ctx : Context) {
         return mDao.getGadgetDetail(id)
     }
 
-    fun recommendation(userInputs: Map<String, Any>) : List<GadgetCase> {
+    fun recommendation(userInputs: Map<String, Any>) {
         val threshold = 0.8
-        val maxDiff = mapOf("memory" to 256, "ram" to 12, "harga" to 24999000)
-        val weights = mapOf("brand" to 1.0, "memory" to 1.0, "ram" to 1.0, "harga" to 1.0, "fitur" to 0.5)
+        val maxDiff = mapOf("memory" to 256, "ram" to 12, "price" to 24999000)
+        val weights = mapOf("brand" to 1.0, "memory" to 1.0, "ram" to 1.0, "price" to 1.0, "features" to 0.5)
         val totalWeight = weights.values.sum()
-        var bestSimilarity = 0.0
         var recommendedCase: ArrayList<GadgetCase> = ArrayList()
         for (case in cases) {
             var similarity = 0.0
             for ((key, value) in case) {
                 val userInput = userInputs[key]
                 if (value is String && userInput is String) {
-                    similarity += weights[key]!! * jaroDistance(value.lowercase(), userInput.lowercase())
+                    val stringSimilarity = weights[key]!! * jaroDistance(value.lowercase(), userInput.lowercase())
+                    similarity += stringSimilarity
                 } else if (value is Int && userInput is Int) {
                     val diff = maxDiff[key] ?: 1
-                    similarity += weights[key]!! * (1 - abs(value - userInput).toDouble() / diff)
+                    val numberSimilarity = weights[key]!! * (1 - abs(value - userInput).toDouble() / diff)
+                    similarity += numberSimilarity
                 }
             }
             if (similarity / totalWeight >= threshold) {
                 recommendedCase.add(case)
             }
         }
-        return recommendedCase
+        recommendationResult.addAll(recommendedCase)
     }
 
     fun max(a: Int, b: Int): Int {
@@ -143,5 +144,11 @@ class CBREngine(ctx : Context) {
         }
 
         return (matches.toDouble() / s1Length + matches.toDouble() / s2Length + (matches - transpositions / 2.0) / matches) / 3.0
+    }
+
+    fun getRecommendationResult() : List<GadgetCase> = recommendationResult
+
+    fun clearRecommendationResult() {
+        recommendationResult.clear()
     }
 }
