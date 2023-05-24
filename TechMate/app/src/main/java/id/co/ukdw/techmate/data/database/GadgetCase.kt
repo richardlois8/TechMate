@@ -1,6 +1,5 @@
 package id.co.ukdw.techmate.data.database
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

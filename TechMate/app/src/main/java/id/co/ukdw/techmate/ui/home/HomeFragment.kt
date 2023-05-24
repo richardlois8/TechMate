@@ -3,10 +3,10 @@ package id.co.ukdw.techmate.ui.home
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import id.co.ukdw.techmate.MainActivity
@@ -14,7 +14,6 @@ import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.FragmentHomeBinding
 import java.util.Locale
-
 
 class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     private lateinit var binding : FragmentHomeBinding
@@ -66,8 +65,8 @@ class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     private fun filter(text: String) {
         val filteredList: MutableList<GadgetCase> = ArrayList()
         for (item in allGadgets!!) {
-            if (item.brand.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT)) ||
-                item.goal.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+            if (item.brand.lowercase(Locale.ROOT).contains(text.lowercase(Locale.ROOT)) ||
+                item.goal.lowercase(Locale.ROOT).contains(text.lowercase(Locale.ROOT))) {
                 filteredList.add(item)
             }
         }

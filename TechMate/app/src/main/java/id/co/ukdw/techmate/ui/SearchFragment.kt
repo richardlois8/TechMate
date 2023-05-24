@@ -3,17 +3,15 @@ package id.co.ukdw.techmate.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.adapters.ViewGroupBindingAdapter.setListener
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import id.co.ukdw.techmate.MainActivity
 import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.databinding.FragmentSearchBinding
 import id.co.ukdw.techmate.utils.NumberTextWatcherForThousand
-
 
 class SearchFragment : Fragment() {
     private lateinit var binding : FragmentSearchBinding

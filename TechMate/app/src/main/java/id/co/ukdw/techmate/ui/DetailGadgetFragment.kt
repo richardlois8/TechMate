@@ -1,15 +1,13 @@
 package id.co.ukdw.techmate.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.databinding.FragmentDetailGadgetBinding
-
 
 class DetailGadgetFragment : Fragment() {
     private var _binding: FragmentDetailGadgetBinding? = null

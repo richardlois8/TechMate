@@ -1,17 +1,10 @@
 package id.co.ukdw.techmate
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.navigation.Navigation
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.google.android.material.navigation.NavigationBarView
 import id.co.ukdw.techmate.databinding.ActivityMainBinding
 import id.co.ukdw.techmate.engine.CBREngine
-import id.co.ukdw.techmate.ui.RecommendationFragment
-import id.co.ukdw.techmate.ui.SearchFragment
-import id.co.ukdw.techmate.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding : ActivityMainBinding
@@ -58,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menu_about -> {
-                    Toast.makeText(this, "About", Toast.LENGTH_SHORT).show()
+                    navController.navigate(R.id.action_global_aboutFragment)
                     true
                 }
                 else -> false

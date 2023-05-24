@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.ItemGadgetBinding
-import java.util.*
+import java.util.Locale
 
 class GadgetAdapter(private var lstGadget: List<GadgetCase>?, private val listener: OnGadgetClickListener) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
     class GadgetViewHolder(val binding : ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {

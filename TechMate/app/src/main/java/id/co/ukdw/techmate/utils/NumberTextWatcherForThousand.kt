@@ -3,12 +3,8 @@ package id.co.ukdw.techmate.utils
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
-import java.util.*
+import java.util.StringTokenizer
 
-
-/**
- * Created by Shreekrishna on 12/14/2014.
- */
 class NumberTextWatcherForThousand(var editText: EditText) : TextWatcher {
     override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
     override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}

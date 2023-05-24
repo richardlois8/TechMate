@@ -1,8 +1,6 @@
 package id.co.ukdw.techmate.engine
 
 import android.content.Context
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.data.database.GadgetDAO
 import id.co.ukdw.techmate.data.database.GadgetDatabase
