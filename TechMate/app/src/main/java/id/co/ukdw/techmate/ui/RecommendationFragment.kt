@@ -6,15 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import id.co.ukdw.techmate.MainActivity
 import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.FragmentRecommendationBinding
 import id.co.ukdw.techmate.ui.home.GadgetAdapter
+import id.co.ukdw.techmate.ui.home.HomeFragmentDirections
 
 
-class RecommendationFragment : Fragment() {
+class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     private lateinit var binding : FragmentRecommendationBinding
 
     override fun onCreateView(
@@ -33,8 +35,13 @@ class RecommendationFragment : Fragment() {
     private fun setupRecyclerView() {
         val recommendationResult = (activity as MainActivity).getEngine().getRecommendationResult()
         Log.e("RecommendationFragment", "result: $recommendationResult")
-        val adapter = GadgetAdapter(recommendationResult)
+        val adapter = GadgetAdapter(recommendationResult, this)
         binding.recViewGadget.layoutManager = GridLayoutManager(context, 1)
         binding.recViewGadget.adapter = adapter
+    }
+
+    override fun onGadgetClicked(gadget: GadgetCase) {
+        val action = RecommendationFragmentDirections.actionRecommendationFragmentToDetailGadgetFragment(gadget)
+        findNavController().navigate(action)
     }
 }

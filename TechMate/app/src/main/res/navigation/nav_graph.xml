@@ -17,7 +17,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="id.co.ukdw.techmate.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailGadgetFragment"
+            app:destination="@id/detailGadgetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="id.co.ukdw.techmate.ui.SearchFragment"
@@ -33,5 +37,23 @@
         android:id="@+id/recommendationFragment"
         android:name="id.co.ukdw.techmate.ui.RecommendationFragment"
         android:label="fragment_recommendation"
-        tools:layout="@layout/fragment_recommendation" />
+        tools:layout="@layout/fragment_recommendation" >
+        <action
+            android:id="@+id/action_recommendationFragment_to_detailGadgetFragment"
+            app:destination="@id/detailGadgetFragment">
+            <argument
+                android:name="gadgetCase"
+                app:argType="id.co.ukdw.techmate.data.database.GadgetCase"
+                app:nullable="false" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detailGadgetFragment"
+        android:name="id.co.ukdw.techmate.ui.DetailGadgetFragment"
+        android:label="DetailGadgetFragment">
+        <argument
+            android:name="gadgetCase"
+            app:argType="id.co.ukdw.techmate.data.database.GadgetCase"
+            app:nullable="false" />
+    </fragment>
 </navigation>

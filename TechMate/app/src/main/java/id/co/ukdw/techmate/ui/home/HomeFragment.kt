@@ -5,13 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import id.co.ukdw.techmate.MainActivity
 import id.co.ukdw.techmate.R
+import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.FragmentHomeBinding
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     private lateinit var binding : FragmentHomeBinding
 
     override fun onCreateView(
@@ -32,12 +34,19 @@ class HomeFragment : Fragment() {
         val dataGadget = (activity as MainActivity).getEngine().getAllGadget()
         binding.apply {
             recViewGadget.layoutManager = GridLayoutManager(context, 1)
-            recViewGadget.adapter = GadgetAdapter(dataGadget)
+            recViewGadget.adapter = GadgetAdapter(dataGadget, this@HomeFragment)
         }
     }
 
     private fun showBottomNav() {
         val bottomNav = (activity as MainActivity).binding.bottomNav
         bottomNav.visibility = View.VISIBLE
+    }
+
+    override fun onGadgetClicked(gadget: GadgetCase) {
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailGadgetFragment(gadget)
+
+        // Use the NavController to navigate to DetailGadgetFragment
+        findNavController().navigate(action)
     }
 }

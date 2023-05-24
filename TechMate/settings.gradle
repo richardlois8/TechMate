@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "TechMate"
-include ':app'
+include ':app',':Application'

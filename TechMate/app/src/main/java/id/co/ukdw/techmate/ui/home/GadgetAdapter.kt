@@ -8,9 +8,9 @@ import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.ItemGadgetBinding
 import java.util.*
 
-class GadgetAdapter(val lstGadget : List<GadgetCase>) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
+class GadgetAdapter(val lstGadget: List<GadgetCase>, private val listener: OnGadgetClickListener) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
     class GadgetViewHolder(val binding : ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : GadgetCase) {
+        fun bind(item: GadgetCase, listener: OnGadgetClickListener) {
             val brand = item.brand
             val splitGoal = item.goal.split(" ")
             val model = if(brand.lowercase() == splitGoal[0].lowercase()) splitGoal.slice(1 until splitGoal.size).joinToString(" ") else item.goal
@@ -28,7 +28,15 @@ class GadgetAdapter(val lstGadget : List<GadgetCase>) : RecyclerView.Adapter<Gad
             Glide.with(binding.root.context)
                 .load(item.image)
                 .into(binding.imgGadget)
+
+            binding.root.setOnClickListener {
+                listener.onGadgetClicked(item)
+            }
         }
+    }
+
+    interface OnGadgetClickListener {
+        fun onGadgetClicked(gadget: GadgetCase)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GadgetViewHolder {
@@ -37,9 +45,8 @@ class GadgetAdapter(val lstGadget : List<GadgetCase>) : RecyclerView.Adapter<Gad
     }
 
     override fun onBindViewHolder(holder: GadgetViewHolder, position: Int) {
-        holder.bind(lstGadget[position])
+        holder.bind(lstGadget[position], listener)
     }
 
     override fun getItemCount(): Int = lstGadget.size
-
 }
