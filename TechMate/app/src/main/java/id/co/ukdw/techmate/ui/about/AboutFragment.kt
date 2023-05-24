@@ -29,7 +29,7 @@ class AboutFragment : Fragment() {
             UserData("JB Adiatmaja", R.drawable.user2_image),
             UserData("Richard Lois S.", R.drawable.user3_image),
         )
-        // Initialize RecyclerView
+
         val adapter = UserAdapter(gadgets)
         binding.recViewUser.layoutManager = GridLayoutManager(context, 1)
         binding.recViewUser.adapter = adapter

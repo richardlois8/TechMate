@@ -32,13 +32,12 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
         Log.e("RecommendationFragment", "result: $recommendationResult")
 
         if (recommendationResult.isNullOrEmpty()) {
-            binding.txtDescRecommendation.visibility = View.VISIBLE
             binding.imageNull.visibility = View.VISIBLE
             binding.textNull.visibility = View.VISIBLE
             binding.textNull2.visibility = View.VISIBLE
             Toast.makeText(context, "No recommendations available", Toast.LENGTH_SHORT).show()
         } else {
-            binding.txtDescRecommendation.visibility = View.GONE
+            binding.txtDescRecommendation.visibility = View.VISIBLE
             binding.imageNull.visibility = View.GONE
             binding.textNull.visibility = View.GONE
             binding.textNull2.visibility = View.GONE
