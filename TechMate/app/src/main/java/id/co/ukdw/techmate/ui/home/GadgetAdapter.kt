@@ -8,7 +8,7 @@ import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.ItemGadgetBinding
 import java.util.*
 
-class GadgetAdapter(val lstGadget: List<GadgetCase>, private val listener: OnGadgetClickListener) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
+class GadgetAdapter(private var lstGadget: List<GadgetCase>?, private val listener: OnGadgetClickListener) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
     class GadgetViewHolder(val binding : ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GadgetCase, listener: OnGadgetClickListener) {
             val brand = item.brand
@@ -45,8 +45,15 @@ class GadgetAdapter(val lstGadget: List<GadgetCase>, private val listener: OnGad
     }
 
     override fun onBindViewHolder(holder: GadgetViewHolder, position: Int) {
-        holder.bind(lstGadget[position], listener)
+        lstGadget?.let {
+            holder.bind(it[position], listener)
+        }
     }
 
-    override fun getItemCount(): Int = lstGadget.size
+    fun filterList(filteredGadgets: List<GadgetCase>) {
+        this.lstGadget = filteredGadgets
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount(): Int = lstGadget?.size ?: 0
 }

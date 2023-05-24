@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailGadgetFragment"
             app:destination="@id/detailGadgetFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -56,4 +59,9 @@
             app:argType="id.co.ukdw.techmate.data.database.GadgetCase"
             app:nullable="false" />
     </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="id.co.ukdw.techmate.ui.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

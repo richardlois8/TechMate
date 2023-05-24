@@ -18,6 +18,6 @@ data class GadgetCase(
     val desc : String
 ) : java.io.Serializable {
     operator fun iterator(): Iterator<Pair<String, Any>> {
-        return listOf("brand" to brand, "memory" to memory, "ram" to ram, "price" to price, "features" to features, "desc" to desc).iterator()
+        return listOf("brand" to brand, "memory" to memory, "ram" to ram, "price" to price, "features" to features, "desc" to desc, "goal" to goal).iterator()
     }
 }
