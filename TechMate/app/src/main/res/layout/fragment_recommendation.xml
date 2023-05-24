@@ -38,6 +38,7 @@
         android:text="@string/desc_recommendation"
         android:textColor="@color/black"
         android:textSize="12sp"
+        android:visibility="gone"
         android:drawableStart="@drawable/ic_information"
         android:drawablePadding="12dp"
         android:layout_marginTop="18dp"
@@ -71,5 +72,44 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.17" />
+
+    <ImageView
+        android:id="@+id/image_null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:contentDescription="null"
+        android:src="@drawable/picture_null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/text_null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Couldn't Find Any Recommendation"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_null" />
+
+    <TextView
+        android:id="@+id/text_null_2"
+        android:layout_width="323dp"
+        android:layout_height="70dp"
+        android:visibility="invisible"
+        android:text="We apologize that we are unable to recommend a gadget based on your input. "
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_null" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

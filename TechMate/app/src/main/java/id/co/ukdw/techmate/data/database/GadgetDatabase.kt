@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@androidx.room.Database(entities = [GadgetCase::class], version = 2)
+@androidx.room.Database(entities = [GadgetCase::class], version = 1)
 abstract class GadgetDatabase : RoomDatabase() {
     abstract fun gadgetDao(): GadgetDAO
 

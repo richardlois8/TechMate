@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             app:boxStrokeWidth="0dp"
+            app:hintEnabled="false"
             app:boxStrokeWidthFocused="0dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusTopEnd="12dp"
@@ -87,6 +88,7 @@
             android:layout_marginTop="4dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -119,6 +121,7 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:boxCornerRadiusBottomEnd="12dp"
+            app:hintEnabled="false"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopStart="12dp">
@@ -151,6 +154,7 @@
             app:boxStrokeWidthFocused="0dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusTopEnd="12dp"
+            app:hintEnabled="false"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusTopStart="12dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -191,7 +195,8 @@
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusTopStart="12dp">
+            app:boxCornerRadiusTopStart="12dp"
+            app:hintEnabled="false">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_features"
                 android:layout_width="match_parent"
