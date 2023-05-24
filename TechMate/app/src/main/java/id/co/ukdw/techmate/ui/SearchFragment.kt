@@ -1,6 +1,8 @@
 package id.co.ukdw.techmate.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +33,30 @@ class SearchFragment : Fragment() {
     }
 
     private fun setListener() {
+        // Add a shared TextWatcher for all EditTexts
+        val textWatcher = object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // Enable button only when all fields are not empty
+                binding.btnFindRecommendation.isEnabled = fieldIsNotEmpty()
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+        }
+
+        // Apply the TextWatcher to all EditTexts
+        binding.etBrand.addTextChangedListener(textWatcher)
+        binding.etMemory.addTextChangedListener(textWatcher)
+        binding.etRam.addTextChangedListener(textWatcher)
+        binding.etPrice.addTextChangedListener(textWatcher)
+        binding.etFeatures.addTextChangedListener(textWatcher)
+        binding.btnFindRecommendation.isEnabled = fieldIsNotEmpty()
+
         binding.etPrice.addTextChangedListener(NumberTextWatcherForThousand(binding.etPrice))
         NumberTextWatcherForThousand.trimCommaOfString(binding.etPrice.text.toString())
+
+        // Initially disable the button
+        binding.btnFindRecommendation.isEnabled = false
+
         binding.btnFindRecommendation.setOnClickListener {
             val brand = binding.etBrand.text.toString()
             val memory = binding.etMemory.text.toString().toInt()
