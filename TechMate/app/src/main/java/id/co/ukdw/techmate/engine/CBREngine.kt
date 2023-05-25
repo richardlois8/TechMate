@@ -12,7 +12,7 @@ class CBREngine(val ctx : Context) {
     private val mDao : GadgetDAO
     private lateinit var cases: List<GadgetCase>
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
-    private val recommendationResult = mutableListOf<GadgetCase>()
+    private val recommendationResult = mutableListOf<Pair<GadgetCase, Double>>()
 
     init {
         val db = GadgetDatabase.getDatabase(ctx)
@@ -68,7 +68,7 @@ class CBREngine(val ctx : Context) {
         val maxDiff = mapOf("memory" to 256, "ram" to 12, "price" to 24999000)
         val weights = mapOf("brand" to 1.0, "memory" to 1.0, "ram" to 1.0, "price" to 1.0, "features" to 0.5)
         val totalWeight = weights.values.sum()
-        var recommendedCase: ArrayList<GadgetCase> = ArrayList()
+        var recommendedCase: ArrayList<Pair<GadgetCase, Double>> = ArrayList()
         for (case in cases) {
             var similarity = 0.0
             for ((key, value) in case) {
@@ -83,7 +83,7 @@ class CBREngine(val ctx : Context) {
                 }
             }
             if (similarity / totalWeight >= threshold) {
-                recommendedCase.add(case)
+                recommendedCase.add(Pair(case, similarity))
             }
         }
         recommendationResult.addAll(recommendedCase)
@@ -146,7 +146,9 @@ class CBREngine(val ctx : Context) {
         return (matches.toDouble() / s1Length + matches.toDouble() / s2Length + (matches - transpositions / 2.0) / matches) / 3.0
     }
 
-    fun getRecommendationResult() : List<GadgetCase> = recommendationResult
+    fun getSortedRecommendationResult(): List<GadgetCase> {
+        return recommendationResult.sortedByDescending { it.second }.map { it.first }
+    }
 
     fun clearRecommendationResult() {
         recommendationResult.clear()

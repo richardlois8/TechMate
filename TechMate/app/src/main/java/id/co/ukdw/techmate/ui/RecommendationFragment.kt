@@ -28,7 +28,7 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recommendationResult = (activity as MainActivity).getEngine().getRecommendationResult()
+        val recommendationResult = (activity as MainActivity).getEngine().getSortedRecommendationResult()
         Log.e("RecommendationFragment", "result: $recommendationResult")
 
         if (recommendationResult.isNullOrEmpty()) {
