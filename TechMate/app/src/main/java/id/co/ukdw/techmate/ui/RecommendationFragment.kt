@@ -21,7 +21,7 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRecommendationBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -31,7 +31,7 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
         val recommendationResult = (activity as MainActivity).getEngine().getSortedRecommendationResult()
         Log.e("RecommendationFragment", "result: $recommendationResult")
 
-        if (recommendationResult.isNullOrEmpty()) {
+        if (recommendationResult.isEmpty()) {
             binding.imageNull.visibility = View.VISIBLE
             binding.textNull.visibility = View.VISIBLE
             binding.textNull2.visibility = View.VISIBLE

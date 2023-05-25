@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.abs
 
-class CBREngine(val ctx : Context) {
+class CBREngine(ctx : Context) {
     private val mDao : GadgetDAO
     private lateinit var cases: List<GadgetCase>
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
@@ -59,16 +59,12 @@ class CBREngine(val ctx : Context) {
         return cases
     }
 
-    fun getDetailGadget(id : Int) : GadgetCase {
-        return mDao.getGadgetDetail(id)
-    }
-
     fun recommendation(userInputs: Map<String, Any>) {
         val threshold = 0.8
         val maxDiff = mapOf("memory" to 256, "ram" to 12, "price" to 24999000)
         val weights = mapOf("brand" to 1.0, "memory" to 1.0, "ram" to 1.0, "price" to 1.0, "features" to 0.5)
         val totalWeight = weights.values.sum()
-        var recommendedCase: ArrayList<Pair<GadgetCase, Double>> = ArrayList()
+        val recommendedCase: ArrayList<Pair<GadgetCase, Double>> = ArrayList()
         for (case in cases) {
             var similarity = 0.0
             for ((key, value) in case) {
@@ -89,15 +85,15 @@ class CBREngine(val ctx : Context) {
         recommendationResult.addAll(recommendedCase)
     }
 
-    fun max(a: Int, b: Int): Int {
+    private fun max(a: Int, b: Int): Int {
         return if (a > b) a else b
     }
 
-    fun min(a: Int, b: Int): Int {
+    private fun min(a: Int, b: Int): Int {
         return if (a < b) a else b
     }
 
-    fun jaroDistance(s1: String, s2: String): Double {
+    private fun jaroDistance(s1: String, s2: String): Double {
         val s1Length = s1.length
         val s2Length = s2.length
 
