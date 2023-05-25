@@ -14,7 +14,7 @@ import id.co.ukdw.techmate.databinding.FragmentSearchBinding
 import id.co.ukdw.techmate.utils.NumberTextWatcherForThousand
 
 class SearchFragment : Fragment() {
-    private lateinit var binding : FragmentSearchBinding
+    private lateinit var binding: FragmentSearchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,17 +31,15 @@ class SearchFragment : Fragment() {
     }
 
     private fun setListener() {
-        // Add a shared TextWatcher for all EditTexts
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                // Enable button only when all fields are not empty
                 binding.btnFindRecommendation.isEnabled = fieldIsNotEmpty()
             }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         }
 
-        // Apply the TextWatcher to all EditTexts
         binding.etBrand.addTextChangedListener(textWatcher)
         binding.etMemory.addTextChangedListener(textWatcher)
         binding.etRam.addTextChangedListener(textWatcher)
@@ -52,7 +50,6 @@ class SearchFragment : Fragment() {
         binding.etPrice.addTextChangedListener(NumberTextWatcherForThousand(binding.etPrice))
         NumberTextWatcherForThousand.trimCommaOfString(binding.etPrice.text.toString())
 
-        // Initially disable the button
         binding.btnFindRecommendation.isEnabled = false
 
         binding.btnFindRecommendation.setOnClickListener {
@@ -64,7 +61,7 @@ class SearchFragment : Fragment() {
             val priceInt = priceString.toInt()
             val features = binding.etFeatures.text.toString()
 
-            if (fieldIsNotEmpty()){
+            if (fieldIsNotEmpty()) {
                 val mapInput = mapOf(
                     "brand" to brand,
                     "memory" to memory,
@@ -73,30 +70,31 @@ class SearchFragment : Fragment() {
                     "features" to features
                 )
                 (activity as MainActivity).getEngine().recommendation(mapInput)
-                view?.findNavController()?.navigate(R.id.action_searchFragment_to_recommendationFragment)
+                view?.findNavController()
+                    ?.navigate(R.id.action_searchFragment_to_recommendationFragment)
             }
         }
     }
 
-    private fun fieldIsNotEmpty() : Boolean {
+    private fun fieldIsNotEmpty(): Boolean {
         var status = true
-        if(binding.etBrand.text!!.isEmpty()){
+        if (binding.etBrand.text!!.isEmpty()) {
             binding.etBrand.error = "Brand cannot be empty"
             status = false
         }
-        if(binding.etMemory.text!!.isEmpty()){
+        if (binding.etMemory.text!!.isEmpty()) {
             binding.etMemory.error = "Memory cannot be empty"
             status = false
         }
-        if (binding.etRam.text!!.isEmpty()){
+        if (binding.etRam.text!!.isEmpty()) {
             binding.etRam.error = "RAM cannot be empty"
             status = false
         }
-        if(binding.etPrice.text!!.isEmpty()){
+        if (binding.etPrice.text!!.isEmpty()) {
             binding.etPrice.error = "Price cannot be empty"
             status = false
         }
-        if (binding.etFeatures.text!!.isEmpty()){
+        if (binding.etFeatures.text!!.isEmpty()) {
             binding.etFeatures.error = "Features cannot be empty"
             status = false
         }

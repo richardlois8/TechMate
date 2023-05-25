@@ -14,7 +14,7 @@ import id.co.ukdw.techmate.databinding.FragmentSplashScreenBinding
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreenFragment : Fragment() {
-    private lateinit var binding : FragmentSplashScreenBinding
+    private lateinit var binding: FragmentSplashScreenBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

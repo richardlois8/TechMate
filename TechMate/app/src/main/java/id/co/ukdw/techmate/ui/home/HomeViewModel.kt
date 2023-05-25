@@ -13,7 +13,8 @@ class HomeViewModel : ViewModel() {
         val filteredList: MutableList<GadgetCase> = ArrayList()
         for (item in gadgets) {
             if (item.brand.lowercase(Locale.ROOT).contains(text.lowercase(Locale.ROOT)) ||
-                item.goal.lowercase(Locale.ROOT).contains(text.lowercase(Locale.ROOT))) {
+                item.goal.lowercase(Locale.ROOT).contains(text.lowercase(Locale.ROOT))
+            ) {
                 filteredList.add(item)
             }
         }

@@ -16,7 +16,7 @@ import id.co.ukdw.techmate.ui.home.GadgetAdapter
 
 
 class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
-    private lateinit var binding : FragmentRecommendationBinding
+    private lateinit var binding: FragmentRecommendationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,8 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recommendationResult = (activity as MainActivity).getEngine().getSortedRecommendationResult()
+        val recommendationResult =
+            (activity as MainActivity).getEngine().getSortedRecommendationResult()
         Log.e("RecommendationFragment", "result: $recommendationResult")
 
         if (recommendationResult.isEmpty()) {
@@ -53,7 +54,10 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     }
 
     override fun onGadgetClicked(gadget: GadgetCase) {
-        val action = RecommendationFragmentDirections.actionRecommendationFragmentToDetailGadgetFragment(gadget)
+        val action =
+            RecommendationFragmentDirections.actionRecommendationFragmentToDetailGadgetFragment(
+                gadget
+            )
         findNavController().navigate(action)
     }
 }

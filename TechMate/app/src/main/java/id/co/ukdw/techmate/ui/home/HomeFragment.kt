@@ -16,7 +16,7 @@ import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     private var gadgetAdapter: GadgetAdapter? = null
     private var allGadgets: List<GadgetCase>? = null
     private lateinit var homeViewModel: HomeViewModel

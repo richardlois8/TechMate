@@ -1,5 +1,6 @@
 package id.co.ukdw.techmate.ui.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,12 +9,17 @@ import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.ItemGadgetBinding
 import java.util.Locale
 
-class GadgetAdapter(private var lstGadget: List<GadgetCase>?, private val listener: OnGadgetClickListener) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
-    class GadgetViewHolder(val binding : ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
+class GadgetAdapter(
+    private var lstGadget: List<GadgetCase>?,
+    private val listener: OnGadgetClickListener
+) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
+    class GadgetViewHolder(val binding: ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GadgetCase, listener: OnGadgetClickListener) {
             val brand = item.brand
             val splitGoal = item.goal.split(" ")
-            val model = if(brand.lowercase() == splitGoal[0].lowercase()) splitGoal.slice(1 until splitGoal.size).joinToString(" ") else item.goal
+            val model =
+                if (brand.lowercase() == splitGoal[0].lowercase()) splitGoal.slice(1 until splitGoal.size)
+                    .joinToString(" ") else item.goal
             binding.txtBrand.text = brand.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(
                     Locale.getDefault()
@@ -50,6 +56,7 @@ class GadgetAdapter(private var lstGadget: List<GadgetCase>?, private val listen
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun filterList(filteredGadgets: List<GadgetCase>) {
         this.lstGadget = filteredGadgets
         notifyDataSetChanged()
