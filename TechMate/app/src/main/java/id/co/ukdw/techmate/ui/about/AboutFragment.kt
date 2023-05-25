@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.databinding.FragmentAboutBinding
-
 
 class AboutFragment : Fragment() {
     private lateinit var binding: FragmentAboutBinding
@@ -19,7 +16,7 @@ class AboutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAboutBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(this).get(AboutViewModel::class.java)
         return binding.root
@@ -34,11 +31,11 @@ class AboutFragment : Fragment() {
 
         viewModel.setUsers()
 
-        viewModel.getUsersLiveData().observe(viewLifecycleOwner, Observer { users ->
+        viewModel.getUsersLiveData().observe(viewLifecycleOwner) { users ->
             users?.let {
                 (binding.recViewUser.adapter as UserAdapter).updateData(it)
             }
-        })
+        }
     }
 }
 
