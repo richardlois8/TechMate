@@ -1,5 +1,6 @@
 package id.co.ukdw.techmate.ui.about
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,7 @@ class UserAdapter(private var users: MutableList<UserData>) :
 
     override fun getItemCount(): Int = users.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newUsers: List<UserData>) {
         users.clear()
         users.addAll(newUsers)
