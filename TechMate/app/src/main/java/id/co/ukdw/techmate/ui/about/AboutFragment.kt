@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.databinding.FragmentAboutBinding
@@ -12,26 +14,36 @@ import id.co.ukdw.techmate.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
     private lateinit var binding: FragmentAboutBinding
+    private lateinit var viewModel: AboutViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAboutBinding.inflate(layoutInflater, container, false)
+        viewModel = ViewModelProvider(this).get(AboutViewModel::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val gadgets = listOf(
-            UserData("Edwin Mahendra", R.drawable.user1_image),
-            UserData("JB Adiatmaja", R.drawable.user2_image),
-            UserData("Richard Lois S.", R.drawable.user3_image),
-        )
-
-        val adapter = UserAdapter(gadgets)
+        val adapter = UserAdapter(mutableListOf())
         binding.recViewUser.layoutManager = GridLayoutManager(context, 1)
         binding.recViewUser.adapter = adapter
+
+        viewModel.setUsers()
+
+        viewModel.getUsersLiveData().observe(viewLifecycleOwner, Observer { users ->
+            users?.let {
+                (binding.recViewUser.adapter as UserAdapter).updateData(it)
+            }
+        })
     }
 }
+
+
+
+
+
+

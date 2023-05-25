@@ -7,15 +7,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import id.co.ukdw.techmate.databinding.ItemUserBinding
 
-class UserAdapter(private val gadgets: List<UserData>) :
+class UserAdapter(private var users: MutableList<UserData>) :
     RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(gadget: UserData) {
-            binding.txtBrand.text = gadget.name
+        fun bind(user: UserData) {
+            binding.txtBrand.text = user.name
             Glide.with(binding.root)
-                .load(gadget.picture)
+                .load(user.picture)
                 .apply(RequestOptions.circleCropTransform())
                 .into(binding.imgGadget)
         }
@@ -28,9 +28,15 @@ class UserAdapter(private val gadgets: List<UserData>) :
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val gadget = gadgets[position]
-        holder.bind(gadget)
+        val user = users[position]
+        holder.bind(user)
     }
 
-    override fun getItemCount(): Int = gadgets.size
+    override fun getItemCount(): Int = users.size
+
+    fun updateData(newUsers: List<UserData>) {
+        users.clear()
+        users.addAll(newUsers)
+        notifyDataSetChanged()
+    }
 }
