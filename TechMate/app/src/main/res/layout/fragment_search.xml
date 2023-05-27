@@ -66,9 +66,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apple, Samsung, Xiaomi, ..."
-                android:textColorHint="@color/light_grey"
+                android:textColorHint="#575757"
                 android:textColor="@color/black"
-                android:inputType="text" />
+                android:inputType="text"
+                android:paddingBottom="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -99,8 +100,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="6"
-                android:textColorHint="@color/light_grey"
-                android:textColor="@color/black"/>
+                android:textColorHint="#575757"
+                android:textColor="@color/black"
+                android:paddingBottom="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -131,8 +133,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="128"
-                android:textColorHint="@color/light_grey"
-                android:textColor="@color/black"/>
+                android:textColorHint="#575757"
+                android:textColor="@color/black"
+                android:paddingBottom="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -163,8 +166,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:hint="6,000,000"
-                android:textColorHint="@color/light_grey"
-                android:textColor="@color/black"/>
+                android:textColorHint="#575757"
+                android:textColor="@color/black"
+                android:paddingBottom="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
         <TextView
             android:id="@+id/desc_price"
@@ -203,8 +207,9 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:hint="Fingerprint, NFC, etc"
-                android:textColorHint="@color/light_grey"
-                android:textColor="@color/black"/>
+                android:textColorHint="#575757"
+                android:textColor="@color/black"
+                android:paddingBottom="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
