@@ -30,7 +30,6 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
         super.onViewCreated(view, savedInstanceState)
         val recommendationResult =
             (activity as MainActivity).getEngine().getSortedRecommendationResult()
-        Log.e("RecommendationFragment", "result: $recommendationResult")
 
         if (recommendationResult.isEmpty()) {
             binding.imageNull.visibility = View.VISIBLE
@@ -47,7 +46,6 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     }
 
     private fun setupRecyclerView(recommendationResult: List<GadgetCase>) {
-        Log.e("RecommendationFragment", "result: $recommendationResult")
         val adapter = GadgetAdapter(recommendationResult, this)
         binding.recViewGadget.layoutManager = GridLayoutManager(context, 1)
         binding.recViewGadget.adapter = adapter

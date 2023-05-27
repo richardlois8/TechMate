@@ -43,7 +43,6 @@
             android:textColor="@color/black"
             android:layout_marginStart="16dp"
             app:layout_constraintTop_toBottomOf="@id/txt_brand"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/img_gadget" />
 
         <ImageButton
@@ -57,6 +56,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="home_button"
             tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/txt_similarity"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Similarity: 0.00%"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@id/txt_model"
+            app:layout_constraintStart_toEndOf="@id/img_gadget" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

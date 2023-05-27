@@ -14,6 +14,7 @@ class GadgetAdapter(
     private val listener: OnGadgetClickListener
 ) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
     class GadgetViewHolder(val binding: ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(item: GadgetCase, listener: OnGadgetClickListener) {
             val brand = item.brand
             val splitGoal = item.goal.split(" ")
@@ -29,6 +30,13 @@ class GadgetAdapter(
                 if (it.isLowerCase()) it.titlecase(
                     Locale.getDefault()
                 ) else it.toString()
+            }
+
+            if (item.similarity == 0.0){
+                binding.txtSimilarity.visibility = ViewGroup.GONE
+            } else {
+                binding.txtSimilarity.visibility = ViewGroup.VISIBLE
+                binding.txtSimilarity.text = String.format("Similaritty : %.2f", item.similarity) + "%"
             }
 
             Glide.with(binding.root.context)
