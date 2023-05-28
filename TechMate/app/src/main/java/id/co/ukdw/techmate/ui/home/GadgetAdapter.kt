@@ -35,7 +35,7 @@ class GadgetAdapter(
 
             if (showSimilarity && item.similarity != 0.0) {
                 binding.txtSimilarity.visibility = ViewGroup.VISIBLE
-                binding.txtSimilarity.text = String.format("Similaritty : %.2f", item.similarity) + "%"
+                binding.txtSimilarity.text = String.format("Similarity: %.2f", item.similarity * 100) + "%"
             } else {
                 binding.txtSimilarity.visibility = ViewGroup.GONE
             }
