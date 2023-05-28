@@ -46,7 +46,7 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     }
 
     private fun setupRecyclerView(recommendationResult: List<GadgetCase>) {
-        val adapter = GadgetAdapter(recommendationResult, this)
+        val adapter = GadgetAdapter(recommendationResult, this, true)
         binding.recViewGadget.layoutManager = GridLayoutManager(context, 1)
         binding.recViewGadget.adapter = adapter
     }

@@ -48,7 +48,7 @@ class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     }
 
     private fun setupRecyclerView(gadgets: List<GadgetCase>?) {
-        gadgetAdapter = GadgetAdapter(gadgets, this)
+        gadgetAdapter = GadgetAdapter(gadgets, this, false)
         binding.recViewGadget.layoutManager = GridLayoutManager(context, 1)
         binding.recViewGadget.adapter = gadgetAdapter
     }
