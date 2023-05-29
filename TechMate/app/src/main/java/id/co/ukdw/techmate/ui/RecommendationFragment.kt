@@ -1,7 +1,6 @@
 package id.co.ukdw.techmate.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +44,7 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     }
 
     private fun setupRecyclerView(recommendationResult: List<GadgetCase>) {
-        val adapter = GadgetAdapter(recommendationResult, this)
+        val adapter = GadgetAdapter(recommendationResult, this, true)
         binding.recViewGadget.layoutManager = GridLayoutManager(context, 1)
         binding.recViewGadget.adapter = adapter
     }

@@ -11,11 +11,12 @@ import java.util.Locale
 
 class GadgetAdapter(
     private var lstGadget: List<GadgetCase>?,
-    private val listener: OnGadgetClickListener
+    private val listener: OnGadgetClickListener,
+    private val showSimilarity: Boolean
 ) : RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>() {
     class GadgetViewHolder(val binding: ItemGadgetBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: GadgetCase, listener: OnGadgetClickListener) {
+        fun bind(item: GadgetCase, listener: OnGadgetClickListener, showSimilarity: Boolean) {
             val brand = item.brand
             val splitGoal = item.goal.split(" ")
             val model =
@@ -32,11 +33,11 @@ class GadgetAdapter(
                 ) else it.toString()
             }
 
-            if (item.similarity == 0.0){
-                binding.txtSimilarity.visibility = ViewGroup.GONE
-            } else {
+            if (showSimilarity && item.similarity != 0.0) {
                 binding.txtSimilarity.visibility = ViewGroup.VISIBLE
-                binding.txtSimilarity.text = String.format("Similaritty : %.2f", item.similarity) + "%"
+                binding.txtSimilarity.text = String.format("Similarity: %.2f", item.similarity * 100) + "%"
+            } else {
+                binding.txtSimilarity.visibility = ViewGroup.GONE
             }
 
             Glide.with(binding.root.context)
@@ -60,7 +61,7 @@ class GadgetAdapter(
 
     override fun onBindViewHolder(holder: GadgetViewHolder, position: Int) {
         lstGadget?.let {
-            holder.bind(it[position], listener)
+            holder.bind(it[position], listener, showSimilarity) // pass new parameter
         }
     }
 

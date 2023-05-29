@@ -18,7 +18,7 @@ class AboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAboutBinding.inflate(layoutInflater, container, false)
-        viewModel = ViewModelProvider(this).get(AboutViewModel::class.java)
+        viewModel = ViewModelProvider(this)[AboutViewModel::class.java]
         return binding.root
     }
 
