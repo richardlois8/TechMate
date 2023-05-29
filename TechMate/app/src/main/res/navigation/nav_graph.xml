@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_helpFragment"
             app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_insertFragment"
+            app:destination="@id/insertFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -70,4 +73,8 @@
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
     <action android:id="@+id/action_global_aboutFragment" app:destination="@id/aboutFragment" />
+    <fragment
+        android:id="@+id/insertFragment"
+        android:name="id.co.ukdw.techmate.ui.home.InsertFragment"
+        android:label="InsertFragment" />
 </navigation>

@@ -14,4 +14,7 @@ interface GadgetDAO {
 
     @Insert
     fun insertGadget(gadget: List<GadgetCase>)
+
+    @Insert
+    fun insertGadget(gadget: GadgetCase)
 }

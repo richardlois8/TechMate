@@ -439,4 +439,9 @@ class CBREngine(ctx: Context) {
     fun clearRecommendationResult() {
         recommendationResult.clear()
     }
+
+    fun insertCase(gadgetCase: GadgetCase) {
+        executorService.execute { mDao.insertGadget(gadgetCase) }
+    }
+
 }

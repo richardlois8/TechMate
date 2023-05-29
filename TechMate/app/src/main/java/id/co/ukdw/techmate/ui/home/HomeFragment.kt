@@ -29,6 +29,11 @@ class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
         binding.fabHelp.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_helpFragment)
         }
+
+        binding.fabInsert.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment_to_insertFragment)
+        }
+
         return binding.root
     }
 
