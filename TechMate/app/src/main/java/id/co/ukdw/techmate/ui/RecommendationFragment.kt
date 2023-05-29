@@ -35,7 +35,6 @@ class RecommendationFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
             binding.imageNull.visibility = View.VISIBLE
             binding.textNull.visibility = View.VISIBLE
             binding.textNull2.visibility = View.VISIBLE
-            Toast.makeText(context, "No recommendations available", Toast.LENGTH_SHORT).show()
         } else {
             binding.txtDescRecommendation.visibility = View.VISIBLE
             binding.imageNull.visibility = View.GONE

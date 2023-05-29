@@ -31,6 +31,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setListener() {
+        /**
         val textWatcher = object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 binding.btnFindRecommendation.isEnabled = fieldIsNotEmpty()
@@ -47,20 +48,24 @@ class SearchFragment : Fragment() {
         binding.etFeatures.addTextChangedListener(textWatcher)
         binding.btnFindRecommendation.isEnabled = fieldIsNotEmpty()
 
+        binding.btnFindRecommendation.isEnabled = false
+        */
+
         binding.etPrice.addTextChangedListener(NumberTextWatcherForThousand(binding.etPrice))
         NumberTextWatcherForThousand.trimCommaOfString(binding.etPrice.text.toString())
 
-        binding.btnFindRecommendation.isEnabled = false
-
         binding.btnFindRecommendation.setOnClickListener {
             val brand = binding.etBrand.text.toString()
-            val memory = binding.etMemory.text.toString().toInt()
-            val ram = binding.etRam.text.toString().toInt()
+            val memory = binding.etMemory.text.toString()
+            val memoryInt = if (memory == "") -1 else memory.toInt()
+            val ram = binding.etRam.text.toString()
+            val ramInt = if (ram == "") -1 else ram.toInt()
             var priceString = binding.etPrice.text.toString()
-            priceString = priceString.replace(",", "")
-            val priceInt = priceString.toInt()
+            if (priceString.contains(",")) priceString = priceString.replace(",", "")
+            val priceInt = if (priceString == "") -1 else priceString.toInt()
             val features = binding.etFeatures.text.toString()
 
+            /**
             if (fieldIsNotEmpty()) {
                 val mapInput = mapOf(
                     "brand" to brand,
@@ -73,6 +78,18 @@ class SearchFragment : Fragment() {
                 view?.findNavController()
                     ?.navigate(R.id.action_searchFragment_to_recommendationFragment)
             }
+            */
+
+            val mapInput = mapOf(
+                "brand" to brand,
+                "memory" to memoryInt,
+                "ram" to ramInt,
+                "price" to priceInt,
+                "features" to features
+            )
+            (activity as MainActivity).getEngine().recommendation(mapInput)
+            view?.findNavController()
+                ?.navigate(R.id.action_searchFragment_to_recommendationFragment)
         }
     }
 
