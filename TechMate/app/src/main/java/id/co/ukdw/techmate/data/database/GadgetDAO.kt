@@ -1,5 +1,6 @@
 package id.co.ukdw.techmate.data.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -17,4 +18,7 @@ interface GadgetDAO {
 
     @Insert
     fun insertGadget(gadget: GadgetCase)
+
+    @Query("SELECT * FROM GadgetCase")
+    fun getAllGadgets(): LiveData<List<GadgetCase>>
 }

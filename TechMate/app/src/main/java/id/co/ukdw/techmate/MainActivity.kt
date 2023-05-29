@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.menu_insert -> {
+                    navController.navigate(R.id.action_global_insertFragment)
+                    true
+                }
+
                 R.id.menu_about -> {
                     navController.navigate(R.id.action_global_aboutFragment)
                     true

@@ -1,9 +1,12 @@
 package id.co.ukdw.techmate.engine
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.data.database.GadgetDAO
 import id.co.ukdw.techmate.data.database.GadgetDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.abs
@@ -17,6 +20,7 @@ class CBREngine(ctx: Context) {
     init {
         val db = GadgetDatabase.getDatabase(ctx)
         mDao = db.gadgetDao()
+
     }
 
     fun insertCases() {
@@ -327,52 +331,57 @@ class CBREngine(ctx: Context) {
         executorService.execute { mDao.insertGadget(data) }
     }
 
-    fun initCases() {
-        executorService.execute { cases = mDao.getAllGadget() }
-    }
-
-    fun getAllGadget(): List<GadgetCase> {
-        return cases
-    }
-
-    fun recommendation(userInputs: Map<String, Any>) {
-        val threshold = 0.8
-        val maxDiff = mapOf("memory" to 256, "ram" to 12, "price" to 24999000)
-        val weights =
-            mapOf("brand" to 1.0, "memory" to 1.0, "ram" to 1.0, "price" to 1.0, "features" to 0.5)
-        val recommendedCase: ArrayList<Pair<GadgetCase, Double>> = ArrayList()
-        for (case in cases) {
-            case.similarity = 0.0
-            var similarity = 0.0
-            var queryWeight = 0.0
-            for ((key, value) in case) {
-                val userInput = userInputs[key]
-
-                if (value is String && userInput is String) {
-                    if (userInput != "") {
-                        val stringSimilarity =
-                            weights[key]!! * jaroDistance(value.lowercase(), userInput.lowercase())
-                        similarity += stringSimilarity
-                        queryWeight += weights[key]!!
-                    }
-                } else if (value is Int && userInput is Int) {
-                    if (userInput != -1){
-                        val diff = maxDiff[key] ?: 1
-                        val numberSimilarity =
-                            weights[key]!! * (1 - abs(value - userInput).toDouble() / diff)
-                        similarity += numberSimilarity
-                        queryWeight += weights[key]!!
-                    }
-                }
-
-            }
-            val caseQuerySimilarity = similarity / queryWeight
-            if (caseQuerySimilarity >= threshold) {
-                case.similarity = caseQuerySimilarity
-                recommendedCase.add(Pair(case, caseQuerySimilarity))
-            }
+   fun initCases() {
+        executorService.execute {
+            val gadgets = mDao.getAllGadget()
+            cases = gadgets.toMutableList()
         }
-        recommendationResult.addAll(recommendedCase)
+    }
+
+    suspend fun recommendation(userInputs: Map<String, Any>) {
+        withContext(Dispatchers.IO) {
+            val threshold = 0.8
+            val maxDiff = mapOf("memory" to 256, "ram" to 12, "price" to 24999000)
+            val weights =
+                mapOf("brand" to 1.0, "memory" to 1.0, "ram" to 1.0, "price" to 1.0, "features" to 0.5)
+            val recommendedCase: ArrayList<Pair<GadgetCase, Double>> = ArrayList()
+
+            // Fetch the latest list of cases from the database
+            cases = mDao.getAllGadget()
+
+            for (case in cases) {
+                case.similarity = 0.0
+                var similarity = 0.0
+                var queryWeight = 0.0
+                for ((key, value) in case) {
+                    val userInput = userInputs[key]
+
+                    if (value is String && userInput is String) {
+                        if (userInput != "") {
+                            val stringSimilarity =
+                                weights[key]!! * jaroDistance(value.lowercase(), userInput.lowercase())
+                            similarity += stringSimilarity
+                            queryWeight += weights[key]!!
+                        }
+                    } else if (value is Int && userInput is Int) {
+                        if (userInput != -1){
+                            val diff = maxDiff[key] ?: 1
+                            val numberSimilarity =
+                                weights[key]!! * (1 - abs(value - userInput).toDouble() / diff)
+                            similarity += numberSimilarity
+                            queryWeight += weights[key]!!
+                        }
+                    }
+
+                }
+                val caseQuerySimilarity = similarity / queryWeight
+                if (caseQuerySimilarity >= threshold) {
+                    case.similarity = caseQuerySimilarity
+                    recommendedCase.add(Pair(case, caseQuerySimilarity))
+                }
+            }
+            recommendationResult.addAll(recommendedCase)
+        }
     }
 
     private fun max(a: Int, b: Int): Int {
@@ -441,7 +450,15 @@ class CBREngine(ctx: Context) {
     }
 
     fun insertCase(gadgetCase: GadgetCase) {
-        executorService.execute { mDao.insertGadget(gadgetCase) }
+        executorService.execute {
+            mDao.insertGadget(gadgetCase)
+            cases = mDao.getAllGadget().toMutableList()
+        }
     }
+
+    fun getAllGadgets(): LiveData<List<GadgetCase>> {
+        return mDao.getAllGadgets()
+    }
+
 
 }

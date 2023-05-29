@@ -37,7 +37,7 @@
         android:id="@+id/batas"
         android:layout_width="429dp"
         android:layout_height="577dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -371,7 +371,7 @@
         android:layout_margin="20dp"
         android:backgroundTint="@color/button_color"
         android:paddingVertical="16dp"
-        android:text="Find Recommendation"
+        android:text="Insert Gadget"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textStyle="bold"

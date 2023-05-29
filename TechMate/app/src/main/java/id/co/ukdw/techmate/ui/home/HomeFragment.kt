@@ -30,17 +30,16 @@ class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_helpFragment)
         }
 
-        binding.fabInsert.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_insertFragment)
-        }
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        allGadgets = (activity as MainActivity).getEngine().getAllGadget()
-        setupRecyclerView(allGadgets)
+        (activity as MainActivity).getEngine().getAllGadgets()
+            .observe(viewLifecycleOwner) { gadgets ->
+                allGadgets = gadgets
+                setupRecyclerView(allGadgets)
+            }
 
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 

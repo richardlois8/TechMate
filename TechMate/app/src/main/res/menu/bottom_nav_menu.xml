@@ -14,8 +14,16 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/menu_insert"
+        android:icon="@drawable/add_blue"
+        android:title="@string/label_find"
+        app:showAsAction="always"/>
+
+    <item
         android:id="@+id/menu_about"
         android:icon="@drawable/ic_person_blue"
         android:title="@string/label_about"
         app:showAsAction="always" />
+
+
 </menu>
