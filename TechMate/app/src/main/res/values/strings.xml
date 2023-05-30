@@ -7,4 +7,5 @@
     <string name="label_about">About</string>
     <string name="label_techmate">TechMate</string>
     <string name="desc_recommendation">From the specifications you mentioned, we can recommend you:</string>
+    <string name="label_insert">Insert</string>
 </resources>

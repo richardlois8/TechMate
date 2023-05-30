@@ -16,7 +16,7 @@
     <item
         android:id="@+id/menu_insert"
         android:icon="@drawable/add_blue"
-        android:title="@string/label_find"
+        android:title="@string/label_insert"
         app:showAsAction="always"/>
 
     <item
