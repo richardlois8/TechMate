@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,6 +37,23 @@ class AboutFragment : Fragment() {
                 (binding.recViewUser.adapter as UserAdapter).updateData(it)
             }
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (isEnabled && this@AboutFragment.isVisible) {
+                        isEnabled = false
+                        requireActivity().finish() // Close the app if the current fragment is the HomeFragment
+                    } else {
+                        isEnabled = true
+                        requireActivity().onBackPressed() // Default back button functionality
+                    }
+                }
+            })
     }
 }
 

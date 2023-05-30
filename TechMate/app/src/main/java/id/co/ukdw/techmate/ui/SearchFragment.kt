@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -58,6 +59,23 @@ class SearchFragment : Fragment() {
             view?.findNavController()
                 ?.navigate(R.id.action_searchFragment_to_recommendationFragment)
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (isEnabled && this@SearchFragment.isVisible) {
+                        isEnabled = false
+                        requireActivity().finish() // Close the app if the current fragment is the HomeFragment
+                    } else {
+                        isEnabled = true
+                        requireActivity().onBackPressed() // Default back button functionality
+                    }
+                }
+            })
     }
 
 //    private fun fieldIsNotEmpty(): Boolean {

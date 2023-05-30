@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -77,5 +78,22 @@ class HomeFragment : Fragment(), GadgetAdapter.OnGadgetClickListener {
     override fun onGadgetClicked(gadget: GadgetCase) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailGadgetFragment(gadget)
         findNavController().navigate(action)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (isEnabled && this@HomeFragment.isVisible) {
+                        isEnabled = false
+                        requireActivity().finish() // Close the app if the current fragment is the HomeFragment
+                    } else {
+                        isEnabled = true
+                        requireActivity().onBackPressed() // Default back button functionality
+                    }
+                }
+            })
     }
 }

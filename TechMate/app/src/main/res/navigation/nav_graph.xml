@@ -73,7 +73,7 @@
     <action android:id="@+id/action_global_insertFragment" app:destination="@id/insertFragment" />
     <fragment
         android:id="@+id/insertFragment"
-        android:name="id.co.ukdw.techmate.insert.InsertFragment"
+        android:name="id.co.ukdw.techmate.ui.insert.InsertFragment"
         android:label="InsertFragment" >
         <action
             android:id="@+id/action_insertFragment_to_homeFragment"
