@@ -35,6 +35,7 @@ class DetailGadgetFragment : Fragment() {
         val gadgetCase = DetailGadgetFragmentArgs.fromBundle(requireArguments()).gadgetCase
 
         binding.txtTitleRecommendation.text = gadgetCase.goal
+        binding.detailTitle.text = gadgetCase.goal
         Glide.with(this)
             .load(gadgetCase.image)
             .into(binding.detailImg)

@@ -23,7 +23,7 @@
             android:id="@+id/txt_title_recommendation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Insert"
+            android:text="Recommendation"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold"
