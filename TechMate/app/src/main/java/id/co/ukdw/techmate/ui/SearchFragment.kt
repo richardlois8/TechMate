@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -46,6 +47,11 @@ class SearchFragment : Fragment() {
             val priceInt = if (priceString == "") -1 else priceString.toInt()
             val features = binding.etFeatures.text.toString()
 
+            if (brand.isEmpty() && memory.isEmpty() && ram.isEmpty() && priceString.isEmpty() && features.isEmpty()) {
+                Toast.makeText(context, "Please fill in at least one field.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
             val mapInput = mapOf(
                 "brand" to brand,
                 "memory" to memoryInt,
