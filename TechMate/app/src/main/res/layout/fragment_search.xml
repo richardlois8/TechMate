@@ -34,20 +34,20 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView_recommendation_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline_input">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/btn_find_recommendation"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_input"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
-            android:id="@+id/container_recommendation_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/label_brand"
@@ -79,7 +79,8 @@
                     android:inputType="text"
                     android:paddingBottom="12dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#575757" />
+                    android:textColorHint="#575757"
+                    android:textIsSelectable="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -114,7 +115,8 @@
                     android:inputType="number"
                     android:paddingBottom="12dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#575757" />
+                    android:textColorHint="#575757"
+                    android:textIsSelectable="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -149,7 +151,8 @@
                     android:inputType="number"
                     android:paddingBottom="12dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#575757" />
+                    android:textColorHint="#575757"
+                    android:textIsSelectable="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -184,7 +187,8 @@
                     android:inputType="numberDecimal"
                     android:paddingBottom="12dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#575757" />
+                    android:textColorHint="#575757"
+                    android:textIsSelectable="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -228,25 +232,31 @@
                     android:inputType="text"
                     android:paddingBottom="12dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#575757" />
+                    android:textColorHint="#575757"
+                    android:textIsSelectable="true" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_find_recommendation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/button_color"
-                android:paddingVertical="16dp"
-                android:text="Find Recommendation"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:cornerRadius="10dp" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_find_recommendation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/button_color"
+        android:paddingVertical="16dp"
+        android:text="Search Gadget"
+        android:textAllCaps="false"
+
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_recommendation_input" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_title_bar"
