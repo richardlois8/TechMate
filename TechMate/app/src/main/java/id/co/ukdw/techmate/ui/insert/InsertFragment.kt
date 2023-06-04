@@ -13,6 +13,7 @@ import id.co.ukdw.techmate.R
 import id.co.ukdw.techmate.data.database.GadgetCase
 import id.co.ukdw.techmate.databinding.FragmentInsertBinding
 import id.co.ukdw.techmate.engine.CBREngine
+import id.co.ukdw.techmate.utils.NumberTextWatcherForThousand
 import kotlinx.coroutines.launch
 
 class InsertFragment : Fragment() {
@@ -31,25 +32,35 @@ class InsertFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val cbrEngine = CBREngine(requireContext())
 
+        binding.etPrice.addTextChangedListener(NumberTextWatcherForThousand(binding.etPrice))
+        NumberTextWatcherForThousand.trimCommaOfString(binding.etPrice.text.toString())
+
         binding.btnFindRecommendation.setOnClickListener {
             val brand = binding.etBrand.text.toString()
-            val ram = binding.etRam.text.toString().toInt()
-            val memory = binding.etMemory.text.toString().toInt()
-            val price = binding.etPrice.text.toString().toInt()
+            val ramString = binding.etRam.text.toString()
+            val memoryString = binding.etMemory.text.toString()
+            val priceString = binding.etPrice.text.toString().replace(",", "")
             val features = binding.etFeatures.text.toString()
             val image = binding.etImage.text.toString()
             val goal = binding.etGoal.text.toString()
             val desc = binding.etDesc.text.toString()
 
-            val gadgetCase =
-                GadgetCase(0, brand, memory, ram, price, features, image, goal, desc, 0.0)
-            lifecycleScope.launch {
-                try {
-                    cbrEngine.insertCase(gadgetCase)
-                    Toast.makeText(requireContext(), "Insert successful", Toast.LENGTH_SHORT).show()
-                    findNavController().navigate(R.id.action_insertFragment_to_homeFragment)
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Insert failed", Toast.LENGTH_SHORT).show()
+            if(brand.isBlank() || ramString.isBlank() || memoryString.isBlank() || priceString.isBlank() || features.isBlank() || image.isBlank() || goal.isBlank() || desc.isBlank()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            } else {
+                val ram = ramString.toInt()
+                val memory = memoryString.toInt()
+                val price = priceString.toInt()
+
+                val gadgetCase = GadgetCase(0, brand, memory, ram, price, features, image, goal, desc, 0.0)
+                lifecycleScope.launch {
+                    try {
+                        cbrEngine.insertCase(gadgetCase)
+                        Toast.makeText(requireContext(), "Insert successful", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_insertFragment_to_homeFragment)
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), "Insert failed", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
