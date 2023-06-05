@@ -6,10 +6,10 @@ TechMate is a gadget recommendation app that helps users find gadgets that suit 
 
 Here are some snapshots of the project:
 
-<img src="Assets/techmate_1.png" width="auto" height=300 align="left"/>
-<img src="Assets/techmate_2.png" width="auto" height=300 align="left"/>
-<img src="Assets/techmate_3.png" width="auto" height=300 align="left"/>
-<img src="Assets/techmate_4.png" width="auto" height=300 align="left"/>
+<img src="Assets/techmate_1.png" height=300 align="left"/>
+<img src="Assets/techmate_2.png" height=300 align="left"/>
+<img src="Assets/techmate_3.png" height=300 align="left"/>
+<img src="Assets/techmate_4.png" height=300 align="left"/>
 
 ## 📋 Requirement
 - Minimum Android App SDK 24
