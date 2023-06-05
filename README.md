@@ -1,15 +1,15 @@
-# Techmate 
+# Techmate 📱
 
 TechMate is a gadget recommendation app that helps users find gadgets that suit their needs. This app uses technology to search for gadgets that best match the user's input based on the 3rd and 4th quarters of 2022. That way, users can choose gadgets that suit their needs and budget more effectively and efficiently.
 
-## Requirement
+## 📋 Requirement
 - Minimum Android App SDK 24
 - PC / Laptop:
   - Processor: Intel Core i3 (Recommended Intel Core i5 above).
   - RAM: 8 GB or more.
   - Screen resolution: 1280 x 800 (Full HD 1920 x 1080 recommended).
 
-## Libraries Used
+## 📚 Libraries Used
 
 | Library | Description | Implementation |
 | --- | --- | --- |
@@ -32,19 +32,19 @@ TechMate is a gadget recommendation app that helps users find gadgets that suit 
 | com.github.bumptech.glide:compiler | Glide compiler | `kapt 'com.github.bumptech.glide:compiler:4.14.2'` |
 | com.tbuonomo:dotsindicator | Dots Indicator | `implementation "com.tbuonomo:dotsindicator:4.3"` |
 
-# How to Use
+## 📖 How to Use
 
-1. **Install the App**: Install the TechMate app from the Google Play Store on your Android device. Make sure your device supports Android SDK 24 or higher.
+1. **Install the App** 📲: Install the TechMate app from the Google Play Store on your Android device. Make sure your device supports Android SDK 24 or higher.
 
-2. **Launch the App**: Open the TechMate app. You'll be greeted with a clean and simple user interface.
+2. **Launch the App** 🚀: Open the TechMate app. You'll be greeted with a clean and simple user interface.
 
-3. **Enter Your Preferences**: In the search section, enter your preferences. You can input your preferred brand, memory, RAM, price, and any specific features you're looking for in a gadget.
+3. **Enter Your Preferences** 🕹️: In the search section, enter your preferences. You can input your preferred brand, memory, RAM, price, and any specific features you're looking for in a gadget.
 
-4. **Get Recommendations**: After entering your preferences, tap on the 'Find Recommendation' button. The app will process your input and display a list of gadgets that best match your needs.
+4. **Get Recommendations** 📝: After entering your preferences, tap on the 'Find Recommendation' button. The app will process your input and display a list of gadgets that best match your needs.
 
-5. **Explore Details**: You can tap on any gadget from the list to view more detailed information about it.
+5. **Explore Details** 🔍: You can tap on any gadget from the list to view more detailed information about it.
 
 Remember, TechMate is designed to make the gadget selection process as easy as possible. The more precise your input, the better the recommendations!
 
-# Feedback
+## 💌 Feedback
 We'd love to hear your thoughts on the app. If you have any suggestions or run into any issues, feel free to raise an issue in the Github repository or contact us directly.
