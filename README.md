@@ -2,6 +2,15 @@
 
 TechMate is a gadget recommendation app that helps users find gadgets that suit their needs. This app uses technology to search for gadgets that best match the user's input based on the 3rd and 4th quarters of 2022. That way, users can choose gadgets that suit their needs and budget more effectively and efficiently.
 
+# 🌐 Overview 
+
+Here are some snapshots of the project:
+
+<img src="Assets/techmate_1.png" width="500">
+<img src="Assets/techmate_2.png" width="500">
+<img src="Assets/techmate_3.png" width="500">
+<img src="Assets/techmate_4.png" width="500">
+
 ## 📋 Requirement
 - Minimum Android App SDK 24
 - PC / Laptop:
