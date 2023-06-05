@@ -10,6 +10,7 @@ Here are some snapshots of the project:
 <img src="Assets/techmate_2.png" height=300 align="left"/>
 <img src="Assets/techmate_3.png" height=300 align="left"/>
 <img src="Assets/techmate_4.png" height=300 align="left"/>
+<br clear="left"/>
 
 ## 📋 Requirement
 - Minimum Android App SDK 24
