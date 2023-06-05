@@ -10,27 +10,23 @@ TechMate is a gadget recommendation app that helps users find gadgets that suit 
   - Screen resolution: 1280 x 800 (Full HD 1920 x 1080 recommended).
 
 ## 📚 Libraries Used
-
-| Library | Description | Implementation |
-| --- | --- | --- |
-| androidx.core:core-ktx | Kotlin Extensions for Android | `implementation 'androidx.core:core-ktx:1.7.0'` |
-| androidx.appcompat:appcompat | Backwards-compatible recent features | `implementation 'androidx.appcompat:appcompat:1.6.1'` |
-| com.google.android.material:material | Material Design Components | `implementation 'com.google.android.material:material:1.9.0'` |
-| androidx.constraintlayout:constraintlayout | Constraint Layout | `implementation 'androidx.constraintlayout:constraintlayout:2.1.4'` |
-| androidx.navigation:navigation-fragment | Navigation Component | `implementation 'androidx.navigation:navigation-fragment:2.5.3'` |
-| junit:junit | Testing Framework | `testImplementation 'junit:junit:4.13.2'` |
-| androidx.test.ext:junit | Android Testing Support Library | `androidTestImplementation 'androidx.test.ext:junit:1.1.5'` |
-| androidx.test.espresso:espresso-core | UI Testing Framework | `androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'` |
-| de.hdodenhof:circleimageview | Circular ImageView | `implementation 'de.hdodenhof:circleimageview:3.1.0'` |
-| androidx.room:room-runtime | Room Persistence Library | `implementation "androidx.room:room-runtime:2.5.1"` |
-| androidx.room:room-compiler | Room Compiler | `kapt "androidx.room:room-compiler:2.5.1"` |
-| androidx.room:room-ktx | Kotlin Extensions for Room | `implementation "androidx.room:room-ktx:2.5.1"` |
-| androidx.lifecycle:lifecycle-viewmodel-ktx | ViewModel | `implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"` |
-| androidx.lifecycle:lifecycle-livedata-ktx | LiveData | `implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"` |
-| androidx.lifecycle:lifecycle-common-java8 | Lifecycle components | `implementation "androidx.lifecycle:lifecycle-common-java8:2.6.1"` |
-| com.github.bumptech.glide:glide | Image Loading and Caching library | `implementation 'com.github.bumptech.glide:glide:4.14.2'` |
-| com.github.bumptech.glide:compiler | Glide compiler | `kapt 'com.github.bumptech.glide:compiler:4.14.2'` |
-| com.tbuonomo:dotsindicator | Dots Indicator | `implementation "com.tbuonomo:dotsindicator:4.3"` |
+| Description | Implementation |
+| --- | --- |
+|[Kotlin Extensions for Android](https://developer.android.com/kotlin/ktx) | `implementation 'androidx.core:core-ktx:1.7.0'` |
+|[Backwards-compatible recent features](https://developer.android.com/jetpack/androidx/releases/appcompat) | `implementation 'androidx.appcompat:appcompat:1.6.1'` |
+|[Material Design Components](https://material.io/develop/android/docs/getting-started/) | `implementation 'com.google.android.material:material:1.9.0'` |
+|[Constraint Layout](https://developer.android.com/training/constraint-layout) | `implementation 'androidx.constraintlayout:constraintlayout:2.1.4'` |
+|[Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) | `implementation 'androidx.navigation:navigation-fragment:2.5.3'` |
+|[Circular ImageView](https://github.com/hdodenhof/CircleImageView) | `implementation 'de.hdodenhof:circleimageview:3.1.0'` |
+|[Room Persistence Library](https://developer.android.com/training/data-storage/room) | `implementation "androidx.room:room-runtime:2.5.1"` |
+|[Room Compiler](https://developer.android.com/jetpack/androidx/releases/room#declaring_dependencies) | `kapt "androidx.room:room-compiler:2.5.1"` |
+|[Kotlin Extensions for Room](https://developer.android.com/jetpack/androidx/releases/room) | `implementation "androidx.room:room-ktx:2.5.1"` |
+|[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) | `implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"` |
+|[LiveData](https://developer.android.com/topic/libraries/architecture/livedata) | `implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"` |
+|[Lifecycle components](https://developer.android.com/jetpack/androidx/releases/lifecycle) | `implementation "androidx.lifecycle:lifecycle-common-java8:2.6.1"` |
+|[Glide: Image Loading and Caching library](https://github.com/bumptech/glide) | `implementation 'com.github.bumptech.glide:glide:4.14.2'` |
+|[Glide compiler](https://github.com/bumptech/glide) | `kapt 'com.github.bumptech.glide:compiler:4.14.2'` |
+|[Dots Indicator](https://github.com/tommybuonomo/dotsindicator) | `implementation "com.tbuonomo:dotsindicator:4.3"` |
 
 ## 📖 How to Use
 
