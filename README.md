@@ -4,7 +4,7 @@ TechMate is a gadget recommendation app that helps users find gadgets that suit 
 
 ## 🌐 Overview 
 
-Here are some snapshots of the project:
+Here are some snapshots of this project:
 
 <img src="Assets/techmate_1.png" height=300 align="left"/>
 <img src="Assets/techmate_2.png" height=300 align="left"/>
