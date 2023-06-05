@@ -38,6 +38,12 @@ Here are some snapshots of the project:
 |[Glide compiler](https://github.com/bumptech/glide) | `kapt 'com.github.bumptech.glide:compiler:4.14.2'` |
 |[Dots Indicator](https://github.com/tommybuonomo/dotsindicator) | `implementation "com.tbuonomo:dotsindicator:4.3"` |
 
+## 👨‍💻 Figma Design
+
+For visualizing and designing the user interface of the TechMate app, we have used [Figma](https://www.figma.com/), a powerful cloud-based design tool. You can access the design files and view them by following the link below:
+
+🔗 [TechMate App Figma Design](https://www.figma.com/file/2H8WkVQPjkgbmKXeydMP0k/Gadget-Recommendation-System?type=design&node-id=22%3A29&t=ykfQvIXJhdTM3OfQ-1)
+
 ## 📖 How to Use
 
 1. **Install the App** 📲: Install the TechMate app from the Google Play Store on your Android device. Make sure your device supports Android SDK 24 or higher.
