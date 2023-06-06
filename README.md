@@ -46,7 +46,7 @@ For visualizing and designing the user interface of the TechMate app, we have us
 
 ## 📖 How to Use
 
-1. **Install the App** 📲: Install the TechMate app from the Google Play Store on your Android device. Make sure your device supports Android SDK 24 or higher.
+1. **Install the App** 📲: Run it from Android Studio or Build it to Apk.
 
 2. **Launch the App** 🚀: Open the TechMate app. You'll be greeted with a clean and simple user interface.
 
