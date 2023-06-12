@@ -60,7 +60,8 @@ Remember, TechMate is designed to make the gadget selection process as easy as p
 
 ## 📽️ Video Demo
 
-**Coming Soon**
+Interested in seeing our app in action? Click the link below to watch the demo video.
+[Watch the Demo Video Here!](https://drive.google.com/file/d/1OUMtRPcc4L2i5copGiZo7xDDJqM_eeec/view)
 
 ## 💌 Feedback
 We'd love to hear your thoughts on the app. If you have any suggestions or run into any issues, feel free to raise an issue in the Github repository or contact us directly.
